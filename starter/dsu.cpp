@@ -4,11 +4,28 @@ using namespace std;
 vector<int> parent, sz;
 
 int findSet(int v) {
-    // TODO: implement path compression
+    while(v!=parent[v])
+        {
+            parent[v]=parent[parent[v]];
+            v=parent[v];
+        }
+    return v;
 }
 
 void unionSet(int a, int b) {
-    // TODO: implement union by size/rank
+    int roota=findSet(a);
+    int rootb=findSet(b);
+    if(roota==rootb)
+        return;
+    if(sz[roota]<sz[rootb])
+    {
+        parent[roota]=rootb;
+        sz[rootb]+=sz[roota];
+    }
+    else{
+        parent[rootb]=roota;
+        sz[roota]+=sz[rootb];
+    }
 }
 
 int main() {
