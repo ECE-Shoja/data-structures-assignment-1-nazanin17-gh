@@ -10,6 +10,7 @@ int findSet(int v) {
             v=parent[v];
         }
     return v;
+    
 }
 
 void unionSet(int a, int b) {
